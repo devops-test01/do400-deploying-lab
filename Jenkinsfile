@@ -9,7 +9,7 @@ pipeline {
                 sh "./mvnw verify"
             }
         }
-    }
+    
     stage("Build & Push Image") {
             steps {
                 sh '''
@@ -31,5 +31,5 @@ pipeline {
                 '''
             }
         }
-    }
+     }
 }
