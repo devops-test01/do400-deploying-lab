@@ -43,6 +43,17 @@ pipeline {
                    -n taamyj-deploying-lab-test --record
                  """
            }
-        }   
+        }
+        stage('Deploy to PROD') {
+              when { branch "main" }
+
+              steps {
+                 sh """
+                    oc set image deployment home-automation \
+                    home-automation=quay.io/${QUAY_USR}/do400-deploying-lab:build-${BUILD_NUMBER} \
+                    -n taamyj-deploying-lab-prod --record
+               """
+                }
+         }   
      }
 }
